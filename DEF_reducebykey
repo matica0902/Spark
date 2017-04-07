@@ -1,0 +1,10 @@
+#compare with reduce group and sort in scale
+
+val pets = sc.parallelize(
+List(("cat", 1), ("dog", 2), ("cat", 2)))
+> pets.reduceByKey(_ + _)
+// => {(cat, 3), (dog, 2)}
+> pets.groupByKey
+// => {(cat, [1, 2]), (dog, [2])}
+> pets.sortByKey(true)
+# => {(cat, 1), (cat, 2), (dog, 2)}
